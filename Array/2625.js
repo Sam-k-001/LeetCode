@@ -38,3 +38,20 @@
 
 // Explanation
 // The maximum depth of any subarray is 1. Thus, all of them are flattened.
+
+var flat = function (arr, n) {
+  const result = [];
+
+  const flatten = (items, depth) => {
+    for (const item of items) {
+      if (Array.isArray(item) && depth < n) {
+        flatten(item, depth + 1); // go one level deeper
+      } else {
+        result.push(item);        // integer, or array we're not allowed to flatten
+      }
+    }
+  };
+
+  flatten(arr, 0);
+  return result;
+};
